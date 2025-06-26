@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<hteml>
+    <head>
+        <style>   /*this is a little of CSS*/
+            /* span > class > id  */
+            .mycl{  /*class(with ".")*/
+                font-weight: bold;
+                color:blue;
+            }
+            #myid{  /*id (with "#"), only 1 has 1 id*/
+                color: green;
+            }
+            span{   /*whole span got this effect*/
+                color:red; 
+            }
+        </style>
+
+        <meta charset="utf-8">
+        <title>Lio's WEB - learning JavaScript</title>
+    </head>
+    <body style="background-color:rgb(30, 30, 30);color:white"> <!--input : events --> <!-- type, value, onclick, ... are from HTML. alert from JS -->
+        <h1>learning JavaScript</h1>
+
+        <p><u>2025.06.26</u></p>
+    
+        <input type="button" value="night" onclick="
+        document.querySelector('body').style.backgroundColor = 'rgb(30, 30, 30)';
+        document.querySelector('body').style.color = 'white';
+        "> 
+        <input type="button" value="day" onclick="
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        ">
+        <br>
+        <input id="night_day" type="button" value=" day " onclick="
+        if(document.querySelector('#night_day').value === ' day ') {
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        document.querySelector('#night_day').value = 'night';
+        } else {
+        document.querySelector('body').style.backgroundColor = 'rgb(30, 30, 30)';
+        document.querySelector('body').style.color = 'white';
+        document.querySelector('#night_day').value = ' day ';
+        }
+        ">
+
+        <br>
+
+        <input type="text" onchange="alert('changed!')">
+
+        <p>
+            <div id="myid" class="mycl">so</div> <!--div : tag without meaning. use for decorate. new line--> 
+            <span class="mycl">I</span> started to learn 
+            <!--span : tag without meaning. use for decorate--><span style="font-weight: bold; font-size:x-large">JavaScript</span> and need now some texts. so <span class="mycl">I</span> write here something without meaning. and <span class="mycl">I</span>'m doing this at night, so <span class="mycl">I</span> make the color of background 
+            <span style="background-color:white; color: black;">dark</span> to protect my eyes :)
+        </p>
+        <br>
+        <p>
+            <strong>Comparison operator & Boolean.</strong> '===' is Comparison operator. ex) 1===2 // false
+            <br><strong>Conditional statements.</strong> 
+        </p>
+
+        <br>
+        <script> //script Tag
+            document.writeln("under this, there's all JS.")
+            var name = 'Lio';
+            document.writeln("<br>"); // '\n'
+            document.writeln('hi ' + name);
+            
+        </script>
+    </body>
+</hteml>
