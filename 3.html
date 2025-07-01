@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <hteml>
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2HZCSYVNP"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z2HZCSYVNP');
+        </script>
+
         <style>   /*this is a little of CSS*/
             /* span > class > id  */
             .mycl{  /*class(with ".")*/
@@ -18,20 +27,33 @@
         <meta charset="utf-8">
         <title>Lio's WEB - learning JavaScript</title>
     </head>
-    <body style="background-color:rgb(30, 30, 30);color:white"> <!--input : events --> <!-- type, value, onclick, ... are from HTML. alert from JS -->
-        <h1>learning JavaScript</h1>
+    <body> <!--input : events --> <!-- type, value, onclick, ... are from HTML. alert from JS -->
+        
+        
+        <h1><a href="index.html">Lio's WEB</a></h1>
+    <ol> <!-- ordered list -->   <!-- ul : unordered list -->
+        <li><a href="1.html">Mein Lernblog</a></li>
+        <li><a href="2.html">practice?</a></li>
+        <li><a href="3.html">learming JavaScript</a></li>
+    </ol>
+    <h2>learning JavaScript</h2>
+
 
         <p><u>2025.06.26</u></p>
     
+        <!-- button for dark mode -->
         <input type="button" value="night" onclick="
         document.querySelector('body').style.backgroundColor = 'rgb(30, 30, 30)';
         document.querySelector('body').style.color = 'white';
         "> 
+        <!-- button for light mode -->
         <input type="button" value="day" onclick="
         document.querySelector('body').style.backgroundColor = 'white';
         document.querySelector('body').style.color = 'black';
         ">
         <br>
+
+        <!-- button for changing backgournd-color -->
         <input id="night_day" type="button" value=" day " onclick="
         if(document.querySelector('#night_day').value === ' day ') {
         document.querySelector('body').style.backgroundColor = 'white';
@@ -43,6 +65,40 @@
         document.querySelector('#night_day').value = ' day ';
         }
         ">
+
+        <br> <!-- same button like upisde, with "this", a new "var"-->
+        <input type="button" value=" day " onclick="
+        var target = document.querySelector('body');
+        if(this.value === ' day ') {
+        target.style.backgroundColor = 'white';
+        target.style.color = 'black';
+        this.value = 'night';
+
+        //change color of hyperlink on dark mode
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while(i < alist.length){
+            console.log(alist[i]);
+            alist[i].style.color = 'blue';
+            i = i + 1;
+        }
+
+        } else {
+        target.style.backgroundColor = 'rgb(30, 30, 30)';
+        target.style.color = 'white';
+        this.value = ' day ';
+
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while(i < alist.length){
+            console.log(alist[i]);
+            alist[i].style.color = 'powderblue';
+            i = i + 1;
+        }
+
+        }
+        ">
+
 
         <br>
 
@@ -61,12 +117,119 @@
         </p>
 
         <br>
-        <script> //script Tag
-            document.writeln("under this, there's all JS.")
-            var name = 'Lio';
-            document.writeln("<br>"); // '\n'
-            document.writeln('hi ' + name);
-            
+        <p><u>2025.07.01</u></p>
+        <p>
+        <h3>Array</h3>
+        <br>
+        <script>
+            var myarray = ['apple' , 'banana' , 'cherry' , 'durian'];
+            var i = 0;
+            while(i < myarray.length) {
+                document.write('<li>'+myarray[i]+'</li>');   //'<li>' + ... ... + '</li>' feels like print line
+                i = i + 1;
+            }
         </script>
+        </p>
+
+        <br>
+        <p>
+            <h3>Parmeter & Argument</h3>
+            <script>
+                document.write('- function aNewFunction(p1, p2) { ... ... } //p1, p2 are Parameters <br>');
+                document.write('- aNewFunction(a1, a2) //a1, a2 are Arguments, when you use the fn <br>');
+                function aNewFunction(p1, p2){
+                    document.write(p1 + p2 + '<br>');
+                }
+                aNewFunction('this sencentce is ', 'made of a function');
+                aNewFunction(5, 3);
+            </script>
+
+            <h3>Using fn with button</h3>
+            <script>
+                function linksSetColor(color) {
+                    var alist = document.querySelectorAll('a');
+                    var i = 0;
+                    while(i < alist.length){
+                        console.log(alist[i]);
+                        alist[i].style.color = color;
+                        i = i + 1;
+                    }
+                }
+                function nightDayHandler(self) {     //'self' is just a parameter
+                    var target = document.querySelector('body');
+                    if(self.value === ' day ') {
+                    target.style.backgroundColor = 'white';
+                    target.style.color = 'black';
+                    self.value = 'night';
+                    linksSetColor('blue');
+                    
+
+                    } else {
+                    target.style.backgroundColor = 'rgb(30, 30, 30)';
+                    target.style.color = 'white';
+                    self.value = ' day ';
+                    linksSetColor('powderblue');
+                    }
+                
+                }
+            </script>
+            <input type="button" value=" day " onclick="
+            nightDayHandler(this);  //'this' is 'this' from this button
+                ">
+        </p>
+
+        <br>
+        <p>
+            <h3>Object</h3> <!-- making object-->
+            to use many Functions easily
+            a function in the object : method
+            <br>this thing below is already an object <br>  
+            <script>
+                var coworkers = {
+                    "programmer":"egoing",
+                    "designer":"leezsche"
+                };
+                document.write('var coworkers = {"programmer":"egoing","designer":"leezsche"};<br>');
+                document.write('and then data can go in object : coworkers.bookkeeper = "daru";<br>');
+                coworkers.bookkeeper = "daru";
+                document.write('other way to put a data into object : coworkers["data scientist"] = "teaho";<br>');
+                coworkers["data scientist"] = "teaho";
+                document.write('<br>'+coworkers.programmer+'<br>');
+                document.write(coworkers.designer+'<br>');
+                document.write(coworkers.bookkeeper+'<br>');
+                document.write(coworkers["data scientist"]);
+            </script>
+
+            <h3>Interate(반복)</h3> <!-- for(var key in ...) { ... } -->
+            for(var key in ...) { ... }<br><br>
+            <script>
+                for(var key in coworkers) {
+                    document.write(key +': '+ coworkers[key]+'<br>');
+                }
+            </script>
+
+            <h3>Property & Method(property : variable in object)</h3>           
+            <script>
+                coworkers.showAll = function() {    //making fn in obj
+                    for(var key in this) {
+                    document.write(key +': '+ this[key]+'<br>');
+                    }
+                }
+                coworkers.showAll();
+            </script>
+
+            <h3>ex) Object with Method</h3>
+            <script>
+                document.writeln('var Back = {');
+                document.writeln('    setColor:function(){');
+                document.writeln('        null');
+                document.writeln('    },');
+                document.writeln('    getColor:function(){');
+                document.writeln('        null');
+                document.writeln('    }');
+                document.writeln('}');
+                document.writeln('<br>');
+            </script>
+        </p>
     </body>
 </hteml>
